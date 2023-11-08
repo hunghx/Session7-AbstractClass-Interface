@@ -3,12 +3,18 @@ package ra.run;
 import javafx.scene.transform.Scale;
 import ra.model.Student;
 import ra.service.IStudentService;
+import ra.service.ISubjectService;
+import ra.service.ITeacherService;
 import ra.serviceimplement.StudentService;
+import ra.serviceimplement.SubjectService;
+import ra.serviceimplement.TeacherService;
 
 import java.util.Scanner;
 
 public class StudentManager {
     private static IStudentService studentService = new StudentService();
+    private static ISubjectService subjectService = new SubjectService();
+    private static ITeacherService teacherService = new TeacherService();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -42,7 +48,7 @@ public class StudentManager {
                     int idNew;
                     while(true){
                         idNew = sc.nextInt();
-                        if(studentService.indexOfStudents(idNew)==-1){
+                        if(studentService.indexOf(idNew)==-1){
                             // chưa tồn tại
                             break;
                         }
@@ -64,7 +70,7 @@ public class StudentManager {
                     // chỉnh sửa
                     System.out.println("Nhâp id cần sửa:");
                     int idEdit = sc.nextInt();
-                    if (studentService.indexOfStudents(idEdit)==-1){
+                    if (studentService.indexOf(idEdit)==-1){
                         System.err.println("không tồn tại id ");
                     }else {
                         // tiến hành sửa thông tin
@@ -86,7 +92,7 @@ public class StudentManager {
                     // xóa
                     System.out.println("Nhâp id cần xóa:");
                     int idDelete = sc.nextInt();
-                    if (studentService.indexOfStudents(idDelete)==-1){
+                    if (studentService.indexOf(idDelete)==-1){
                         System.err.println("không tồn tại id ");
                     }else{
                         studentService.delete(idDelete);

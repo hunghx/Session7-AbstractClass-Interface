@@ -38,19 +38,17 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void delete(int id) {
-        int  indexDelete = indexOfStudents(id);
-        if(indexDelete != -1) {
-            for (int i = indexDelete; i < count - 1; i++) {
+    public void delete(Integer id) {
+        int  indexDelete = indexOf(id);
+        for (int i = indexDelete; i < count - 1; i++) {
                 students[i] = students[i + 1];
-            }
-            students[count - 1] = null;
-            count--;
         }
+        students[count - 1] = null;
+        count--;
     }
 
     @Override
-    public int indexOfStudents(int id) {
+    public int indexOf(Integer id) {
         for (int i = 0; i < count; i++) {
             if (students[i].getId()==id){
                 return i;
